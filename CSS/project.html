@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My To-Do List</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .todo-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .task {
+      margin: 8px 0;
+    }
+
+    .task input {
+      margin-right: 8px;
+    }
+
+    .add-task {
+      margin-top: 15px;
+      display: flex;
+    }
+
+    .add-task input {
+      flex: 1;
+      padding: 5px;
+    }
+
+    .add-task button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      background: tomato;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-box">
+    <h2>🌸 My Tasks</h2>
+
+    <div id="task-list">
+      <div class="task">
+        <input type="checkbox" id="task1">
+        <label for="task1">Finish HTML project</label>
+      </div>
+      <div class="task">
+        <input type="checkbox" id="task2">
+        <label for="task2">Study CSS animations</label>
+      </div>
+      <div class="task">
+        <input type="checkbox" id="task3">
+        <label for="task3">Read UI/UX article</label>
+      </div>
+    </div>
+
+    <div class="add-task">
+      <input type="text" id="new-task" placeholder="New task...">
+      <button onclick="addTask()">Add</button>
+    </div>
+  </div>
+
+  <script>
+    let taskCount = 3;
+
+    function addTask() {
+      let input = document.getElementById("new-task");
+      let text = input.value.trim();
+
+      if (text !== "") {
+        taskCount++;
+        let taskList = document.getElementById("task-list");
+
+        // make new task div
+        let taskDiv = document.createElement("div");
+        taskDiv.className = "task";
+
+        // checkbox
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "task" + taskCount;
+
+        // label
+        let label = document.createElement("label");
+        label.htmlFor = checkbox.id;
+        label.textContent = text;
+
+        // put together
+        taskDiv.appendChild(checkbox);
+        taskDiv.appendChild(label);
+
+        taskList.appendChild(taskDiv);
+
+        // clear input
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>

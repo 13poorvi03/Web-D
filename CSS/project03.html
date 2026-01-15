@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bike Runner Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: lightblue;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .game-container {
+      width: 600px;
+      height: 200px;
+      background: white;
+      border: 3px solid black;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* bike */
+    #bike {
+      width: 50px;
+      height: 50px;
+      background: url('https://cdn-icons-png.flaticon.com/512/2972/2972185.png') no-repeat center/cover;
+      position: absolute;
+      bottom: 20px;
+      left: 50px;
+    }
+
+    /* obstacle */
+    .obstacle {
+      width: 40px;
+      height: 40px;
+      background: url('https://cdn-icons-png.flaticon.com/512/616/616408.png') no-repeat center/cover;
+      position: absolute;
+      bottom: 20px;
+      right: -50px;
+      animation: moveObs 3s linear infinite;
+    }
+
+    @keyframes moveObs {
+      from { right: -50px; }
+      to { right: 650px; }
+    }
+
+    /* jump animation */
+    .jump {
+      animation: jump 0.6s ease;
+    }
+
+    @keyframes jump {
+      0% { bottom: 20px; }
+      50% { bottom: 100px; }
+      100% { bottom: 20px; }
+    }
+
+    /* score */
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: black;
+    }
+
+    /* game over text */
+    #game-over {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div id="bike"></div>
+    <div class="obstacle"></div>
+    <div id="score">Score: 0</div>
+    <div id="game-over">Game Over!</div>
+  </div>
+
+  <script>
+    // get elements
+    const bike = document.getElementById("bike");
+    const obstacle = document.querySelector(".obstacle");
+    const scoreDisplay = document.getElementById("score");
+    const gameOverText = document.getElementById("game-over");
+
+    let score = 0;
+    let isAlive = true;
+
+    // jump when spacebar pressed
+    document.addEventListener("keydown", function(e) {
+      if (e.code === "Space" && !bike.classList.contains("jump")) {
+        bike.classList.add("jump");
+        setTimeout(function() {
+          bike.classList.remove("jump");
+        }, 600);
+      }
+    });
+
+    // check collision + update score
+    setInterval(function() {
+      if (!isAlive) return;
+
+      let bikeBottom = parseInt(window.getComputedStyle(bike).getPropertyValue("bottom"));
+      let obstacleLeft = parseInt(window.getComputedStyle(obstacle).getPropertyValue("right"));
+
+      if (obstacleLeft > 500 && obstacleLeft < 550 && bikeBottom <= 40) {
+        gameOverText.style.display = "block";
+        isAlive = false;
+        obstacle.style.animationPlayState = "paused";
+      } else {
+        score++;
+        scoreDisplay.textContent = "Score: " + score;
+      }
+    }, 100);
+  </script>
+</body>
+</html>

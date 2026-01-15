@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MoodBoard App</title>
+    <style>
+        /* basic reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f9d1d1, #fbc2eb);
+        }
+
+        /* navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.7);
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .navbar h2 {
+            font-family: cursive;
+            margin: 0;
+        }
+
+        .navbar img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #ff6f91;
+        }
+
+        /* feed area */
+        .feed {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .mood {
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        /* floating add button */
+        .add-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ff6f91;
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .add-btn:hover {
+            background: #ff3f6f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- navbar -->
+    <div class="navbar">
+        <h2>MoodBoard</h2>
+        <img src="https://placekitten.com/40/40" alt="profile">
+    </div>
+
+    <!-- feed -->
+    <div class="feed">
+        <div class="card">
+            <h3>😊 Happy Day</h3>
+            <p class="mood">Mood: 🌈</p>
+            <p>Finished my project and felt proud!</p>
+        </div>
+
+        <div class="card">
+            <h3>😌 Calm Evening</h3>
+            <p class="mood">Mood: 🌙</p>
+            <p>Relaxed with music and journaling.</p>
+        </div>
+    </div>
+
+    <!-- floating button -->
+    <button class="add-btn">+</button>
+
+</body>
+</html>
