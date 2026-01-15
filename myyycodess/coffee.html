@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aesthetic Coffee Toggle</title>
+  <style>
+    body {
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:linear-gradient(135deg,#fceabb,#f8b500);
+      font-family:'Poppins',sans-serif;
+    }
+
+    /* ===== Instruction Text ===== */
+    .instruction {
+      font-size:20px;
+      font-weight:600;
+      color:#4b2e2e;
+      margin-bottom:20px;
+      letter-spacing:1px;
+      overflow:hidden;
+      border-right:.15em solid #4b2e2e;
+      white-space:nowrap;
+      animation: typing 4s steps(40,end), blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width:0 }
+      to { width:100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color:transparent }
+      50% { border-color:#4b2e2e; }
+    }
+
+    /* ===== Toggle ===== */
+    .toggle {
+      width:160px;
+      height:80px;
+      background:linear-gradient(135deg,#d3c6a3,#b89b72);
+      border-radius:50px;
+      box-shadow:inset 0 0 15px rgba(0,0,0,0.3),0 5px 15px rgba(0,0,0,0.2);
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Seed */
+    .seed {
+      width:28px;
+      height:40px;
+      background:#6b3e26;
+      border-radius:50%;
+      position:absolute;
+      top:20px;
+      left:25px;
+      opacity:0;
+      transform:scale(0.5);
+      transition:all 0.6s ease;
+    }
+
+    /* Cup (mini size) */
+    .cup {
+      width:45px;
+      height:45px;
+      background:#fff;
+      border:3px solid #6b4f2d;
+      border-radius:0 0 20px 20px;
+      position:absolute;
+      bottom:15px;
+      left:-80px;
+      opacity:0;
+      transition:all 0.8s ease;
+    }
+    .cup::after {
+      content:"";
+      position:absolute;
+      right:-10px;
+      top:10px;
+      width:12px;
+      height:18px;
+      border:3px solid #6b4f2d;
+      border-left:none;
+      border-radius:0 10px 10px 0;
+      background:#fff;
+    }
+
+    /* Coffee */
+    .coffee {
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:0%;
+      background:linear-gradient(180deg,#8b4513,#3e2723);
+      border-radius:0 0 16px 16px;
+      transition:height 1.2s ease;
+    }
+
+    /* Steam */
+    .steam {
+      position:absolute;
+      top:-30px;
+      left:10px;
+      width:25px;
+      height:40px;
+      opacity:0;
+      transition:opacity 0.6s ease;
+    }
+    .steam span {
+      position:absolute;
+      width:5px;
+      height:20px;
+      background:rgba(255,255,255,0.9);
+      border-radius:3px;
+      animation:rise 2.5s infinite ease-in-out;
+    }
+    .steam span:nth-child(1){left:0;animation-delay:0s;}
+    .steam span:nth-child(2){left:8px;animation-delay:0.5s;}
+    .steam span:nth-child(3){left:16px;animation-delay:1s;}
+
+    @keyframes rise {
+      0%{transform:translateY(0);opacity:0.9;}
+      50%{transform:translateY(-15px);opacity:0.5;}
+      100%{transform:translateY(-30px);opacity:0;}
+    }
+
+    /* Active State (Toggle ON) */
+    .toggle.active .seed {
+      opacity:1;
+      transform:scale(1);
+      transition-delay:0.2s;
+      animation:fadeOut 0.6s forwards;
+      animation-delay:1s;
+    }
+    @keyframes fadeOut {
+      to {opacity:0; transform:scale(0.5);}
+    }
+
+    .toggle.active .cup {
+      left:95px;
+      opacity:1;
+      transition-delay:0.8s;
+    }
+    .toggle.active .coffee {
+      height:70%;
+      transition-delay:1.6s;
+    }
+    .toggle.active .steam {
+      opacity:1;
+      transition-delay:2.4s;
+    }
+
+    /* Reverse animation when OFF */
+    .toggle:not(.active) .steam {opacity:0;transition-delay:0s;}
+    .toggle:not(.active) .coffee {height:0%;transition-delay:0.3s;}
+    .toggle:not(.active) .cup {left:-80px;opacity:0;transition-delay:0.6s;}
+    .toggle:not(.active) .seed {opacity:0;transform:scale(0.5);transition-delay:0.9s;}
+  </style>
+</head>
+<body>
+  <!-- Instruction Text -->
+  <div class="instruction">☕ Click on it → Put seed → See magic ✨</div>
+
+  <!-- Toggle -->
+  <div class="toggle" onclick="this.classList.toggle('active')">
+    <div class="seed"></div>
+    <div class="cup">
+      <div class="coffee"></div>
+      <div class="steam">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
