@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Box Demo</title>
+  <style>
+    
+    body {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    div {
+      background-color: rgb(228, 95, 117); 
+      height: 300px;
+      width: 300px;
+       transition: all 0.5s ease; 
+    }
+
+   
+    @media screen and (min-width: 600px) {
+      body {
+        background-color: aquamarine;
+      }
+      div {
+        border-radius: 50px; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
