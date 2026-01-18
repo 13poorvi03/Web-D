@@ -1,0 +1,43 @@
+/* for para or element selector  */
+p{
+    color: palevioletred;
+    font-family: fantasy;
+    font-size: 23px;
+}
+/* for class */
+.intro{
+    font-size: 20px;
+    color: rgb(50, 233, 233);
+    background-color: rgb(208, 110, 110);
+}
+/* for id  */
+#headline{
+    font-size: 20px;
+    color: rgb(150, 247, 150);
+}
+
+.hero{
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 60px;
+}
+.hero-title{
+    color: rgb(241, 147, 33);
+    font-size: 36px;
+    font-family: fantasy;
+    margin-bottom: 10px;
+}
+.hero-subtitle{
+    color: blueviolet;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.hero-button{
+    display: inline-block;
+    background-color: antiquewhite;
+    color: rgb(47, 176, 133);
+    font-size: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 10px;
+}
